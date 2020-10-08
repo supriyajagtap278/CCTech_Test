@@ -1,0 +1,27 @@
+<script>
+    function inside(point, polygon) {
+        
+        var x = point[0], y = point[1];
+        
+        var inside = false;
+        for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+            var xi = polygon[i][0], yi = polygon[i][1];
+            var xj = polygon[j][0], yj = polygon[j][1];
+            
+            var intersect = ((yi > y) != (yj > y))
+                && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+            if (intersect) inside = !inside;
+        }
+        
+        return inside;
+    }
+    
+    var polygon = [ [1,0], [8,3], [8,8], [1,5] ];
+    document.write("Case 1 : " + inside([3,5], polygon));
+
+    polygon = [ [-3,2], [-2,-0.8], [0,1.2], [2.2,0], [2,4.5] ];
+    document.write("<br>Case 2 : " + inside([0,0], polygon));
+    
+</script>
+
+
